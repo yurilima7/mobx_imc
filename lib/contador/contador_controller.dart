@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:mobx_imc/model/full_name.dart';
 
 class ContadorController {
   final _counter = Observable<int>(0, name: 'counter observable');
@@ -33,25 +34,5 @@ class ContadorController {
 
     // Alterar pelo padrão de projeto prototype  (copywith)
     _fullName.value = _fullName.value.copyWith(first: 'James', last: 'Caio');
-  }
-}
-
-class FullName {
-  String first;
-  String last;
-
-  FullName({
-    required this.first,
-    required this.last,
-  });
-
-  FullName copyWith({
-    String? first,
-    String? last,
-  }) {
-    return FullName(
-      first: first ?? this.first,
-      last: last ?? this.last,
-    );
   }
 }
