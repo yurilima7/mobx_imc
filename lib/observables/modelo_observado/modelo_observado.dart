@@ -1,41 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx_imc/observables/modelo_observado/modelo_observado_controller.dart';
+import 'package:mobx_imc/observables/list/observable_list_controller.dart';
 
-class ModeloObservado extends StatefulWidget {
-  const ModeloObservado({super.key});
+class ObservableListPage extends StatefulWidget {
+  const ObservableListPage({super.key});
 
   @override
-  State<ModeloObservado> createState() => _ModeloObservadoState();
+  State<ObservableListPage> createState() => _ObservableListPageState();
 }
 
-class _ModeloObservadoState extends State<ModeloObservado> {
-  final controller = ModeloObservadoController();
+class _ObservableListPageState extends State<ObservableListPage> {
+  final controller = ObservableListController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Modelo Observado'),
+        title: const Text('Observable List'),
       ),
 
       body: Column( 
         children: [
           Expanded(
             child: Observer(
-              builder: (_) => ListView.builder(
+              builder: (context) => ListView.builder(
                 itemCount: controller.products.length,
-                
-                itemBuilder: (context, index) => Observer(
-                  builder: (_) => CheckboxListTile(
-                    value: controller.products[index].seleted,
-                    
-                    onChanged: (_) {
-                      controller.selectedProduct(index);
-                    },
-
-                    title: Text(controller.products[index].productModel.name),
-                  ),
+                itemBuilder: (context, index) => CheckboxListTile(
+                  value: false,
+                  onChanged: (_) {},
+                  title: Text(controller.products[index].name),
                 ),
               ),
             ),
